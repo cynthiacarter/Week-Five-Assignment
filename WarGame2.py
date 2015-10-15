@@ -34,14 +34,13 @@ def main():
 		PlayerAHand.append(Deck.pop())
 		PlayerBHand.append(Deck.pop())
 	
-	# Main Gameplay ADDED CODE
+	# Main Gameplay
 		
 	while len(PlayerAHand) > 0 and len(PlayerBHand) > 0:
 		gameCounter += 1 
 		PlayerAHand, PlayerBHand = playRound(PlayerAHand, PlayerBHand)
-		if gameCounter >= 100:
+		if gameCounter % 45 == 0:
 			input("pause")
-			gameCounter = 0
 		print(gameCounter)
 	
 	
@@ -64,7 +63,13 @@ def playRound(PlayerA, PlayerB):
 	See the README.md for the variations of
 	the game to program.
 	'''
-	
+	if getRank(PlayerA[0]) == getRank(PlayerB[0]):
+	    return WAR(PlayerA, PlayerB)
+	elif getRank(PlayerA[0]) > getRank(PlayerB [0]):
+	    PlayerB.pop(0)
+	else:
+	    PlayerA.pop(0)
+	    
 	return PlayerA, PlayerB
 
 
